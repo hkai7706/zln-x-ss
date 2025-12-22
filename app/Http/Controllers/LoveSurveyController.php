@@ -179,26 +179,27 @@ class LoveSurveyController extends Controller
             ];
         }
 
-        // Attempt to send email
-        try {
-           //Mail::to(env('SURVEY_RECIPIENT_EMAIL', 'your-email@example.com'))
-               // ->send(new SurveySubmitted($validated['name'], $responses));
-\Log::info('Survey submitted', $data);
-            // Clear session data and redirect to completion page
-            $request->session()->forget('survey_progress');
-            
-            return redirect()->route('survey.complete')
-                ->with('success', 'Thank you! Your survey has been submitted successfully.');
-                
-        } catch (\Exception $e) {
-            // Log error for debugging
-            \Log::error('Survey email failed: ' . $e->getMessage());
-            
-            return back()
-                ->with('error', 'Something went wrong. Please try again.')
-                ->withInput();
-        }
-    }
+     // Attempt to send email
+try {
+    //Mail::to(env('SURVEY_RECIPIENT_EMAIL', 'your-email@example.com'))
+        // ->send(new SurveySubmitted($validated['name'], $responses));
+    
+    \Log::info('Survey submitted successfully');
+    
+    // Clear session data and redirect to completion page
+    $request->session()->forget('survey_progress');
+    
+    return redirect()->route('survey.complete')
+        ->with('success', 'Thank you! Your survey has been submitted successfully.');
+        
+} catch (\Exception $e) {
+    // Log error for debugging
+    \Log::error('Survey email failed: ' . $e->getMessage());
+    
+    return back()
+        ->with('error', 'Something went wrong. Please try again.')
+        ->withInput();
+}
 
     /**
      * Display the completion/thank you page
