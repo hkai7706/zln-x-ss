@@ -165,19 +165,18 @@ class Keepsake extends Model
     /**
      * Get keepsakes grouped by month
      */
-    public static function getMonthlyStats($year = null)
-    {
-        $year = $year ?? now()->year;
-        
-        return self::selectRaw('MONTH(memory_date) as month, COUNT(*) as count')
-            ->whereYear('memory_date', $year)
-            ->groupBy('month')
-            ->orderBy('month')
-            ->get()
-            ->pluck('count', 'month')
-            ->toArray();
-    }
-
+public static function getMonthlyStats($year = null)
+{
+    $year = $year ?? now()->year;
+    
+    return self::selectRaw('EXTRACT(MONTH FROM memory_date)::integer as month, COUNT(*) as count')
+        ->whereYear('memory_date', $year)
+        ->groupBy('month')
+        ->orderBy('month')
+        ->get()
+        ->pluck('count', 'month')
+        ->toArray();
+}
     /**
      * Get all available categories
      */
