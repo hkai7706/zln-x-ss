@@ -181,9 +181,9 @@ class LoveSurveyController extends Controller
 
         // Attempt to send email
         try {
-            Mail::to(env('SURVEY_RECIPIENT_EMAIL', 'your-email@example.com'))
-                ->send(new SurveySubmitted($validated['name'], $responses));
-
+           //Mail::to(env('SURVEY_RECIPIENT_EMAIL', 'your-email@example.com'))
+               // ->send(new SurveySubmitted($validated['name'], $responses));
+\Log::info('Survey submitted', $data);
             // Clear session data and redirect to completion page
             $request->session()->forget('survey_progress');
             
