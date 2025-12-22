@@ -94,3 +94,15 @@ Route::prefix('keepsakes')->name('keepsakes.')->group(function () {
     // Export
     Route::get('/api/export', [KeepsakeController::class, 'export'])->name('api.export');
 });
+
+
+Route::get('/debug', function () {
+    return [
+        'procfile_exists' => file_exists(base_path('Procfile')),
+        'railway_json_exists' => file_exists(base_path('railway.json')),
+        'db_connection' => config('database.default'),
+        'database_url' => env('DATABASE_URL') ? 'SET' : 'NOT SET',
+        'migrations_path_exists' => is_dir(database_path('migrations')),
+        'migration_files' => count(glob(database_path('migrations/*.php'))),
+    ];
+});
