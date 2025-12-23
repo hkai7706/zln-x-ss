@@ -106,3 +106,16 @@ Route::get('/debug', function () {
         'migration_files' => count(glob(database_path('migrations/*.php'))),
     ];
 });
+
+
+
+Route::get('/test-css', function () {
+    $cssPath = public_path('css/main.css');
+    return [
+        'css_exists' => file_exists($cssPath),
+        'css_path' => $cssPath,
+        'public_path' => public_path(),
+        'asset_url' => asset('css/main.css'),
+        'app_url' => config('app.url'),
+    ];
+});
