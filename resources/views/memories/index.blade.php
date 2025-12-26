@@ -11,7 +11,7 @@
     <title>Our Journey</title>
   
 </head>
-<body style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh;">
+<body>
 <!-- ============================================
          ANIMATED BACKGROUND - Copy this HTML
          ============================================ -->
