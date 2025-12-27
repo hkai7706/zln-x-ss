@@ -119,3 +119,20 @@ Route::get('/test-css', function () {
         'app_url' => config('app.url'),
     ];
 });
+
+
+
+
+
+
+
+
+Route::get('/debug-files', function () {
+    return [
+        'public_path' => public_path(),
+        'css_exists' => file_exists(public_path('css/main.css')),
+        'css_path' => public_path('css/main.css'),
+        'files_in_public' => is_dir(public_path()) ? scandir(public_path()) : 'not a directory',
+        'files_in_css' => is_dir(public_path('css')) ? scandir(public_path('css')) : 'css folder not found',
+    ];
+});
